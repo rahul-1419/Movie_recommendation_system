@@ -1,0 +1,5 @@
+matplotlib
+seaborn
+mlflow
+dvc
+scikit-learn
