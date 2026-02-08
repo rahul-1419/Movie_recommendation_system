@@ -3,3 +3,12 @@ seaborn
 mlflow
 dvc
 scikit-learn
+ipykernel
+python-box
+pyYAML
+tqdm
+ensure
+joblib
+types-PyYAML
+Flask
+Flask-Cors
