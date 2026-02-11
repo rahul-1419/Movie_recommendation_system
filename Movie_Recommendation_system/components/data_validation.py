@@ -17,12 +17,12 @@ class DataValidation:
             for dataset_name, dataset_schema in schema.items():
                 file_path = file_path = Path(unzip_dir) / dataset_schema["file_name"]
 
-                print(f"\n🔍 Validating dataset: {dataset_name}")
-                print(f"📂 File path: {file_path}")
+                print(f"\n Validating dataset: {dataset_name}")
+                print(f"File path: {file_path}")
 
-                # 1️⃣ File existence
+                # File existence
                 if not file_path.exists():
-                    print("❌ File does NOT exist")
+                    print("File does NOT exist")
                     validation_status = False
                     break
 
@@ -36,11 +36,11 @@ class DataValidation:
 
                 missing_cols = expected_columns - data_columns
                 if missing_cols:
-                    print("❌ Missing columns:", missing_cols)
+                    print("Missing columns:", missing_cols)
                     validation_status = False
                     break
                 else:
-                    print("✅ All columns matched")
+                    print("All columns matched")
 
             with open(self.config.STATUS_FILE, "w") as f:
                 f.write(f"Validation status: {validation_status}")

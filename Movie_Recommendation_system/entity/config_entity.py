@@ -22,3 +22,10 @@ class DataTransformationConfig:
     movies_data_path: Path
     credits_data_path: Path
     transformed_data_path: Path
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    root_dir: Path
+    transformed_data_path: Path
+    vectorizer_path: Path
+    similarity_path: Path

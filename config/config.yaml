@@ -6,15 +6,19 @@ data_ingestion:
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion/UnZip
 
-
 data_validation:
   root_dir: artifacts/data_validation
   unzip_dir: artifacts/data_ingestion/UnZip
   STATUS_FILE: artifacts/data_validation/status.txt
 
-
 data_transformation:
   root_dir: artifacts/data_transformation
   movies_data_path: artifacts/data_ingestion/UnZip/tmdb_5000_movies.csv
   credits_data_path: artifacts/data_ingestion/UnZip/tmdb_5000_credits.csv
-  transformed_data_path: artifacts/data_transformation/merged_tmdb.csv 
+  transformed_data_path: artifacts/data_transformation/merged_tmdb.csv
+
+model_trainer:
+  root_dir: artifacts/model_build
+  transformed_data_path: artifacts/data_transformation/merged_tmdb.csv
+  vectorizer_path: artifacts/model_build/vectorizer.pkl
+  similarity_path: artifacts/model_build/similarity.pkl

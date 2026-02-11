@@ -1,6 +1,6 @@
 from Movie_Recommendation_system.constants import *
 from Movie_Recommendation_system.utils.common import read_yaml, create_directories
-from Movie_Recommendation_system.entity.config_entity import (DataIngestionConfig, DataValidationConfig,DataTransformationConfig)
+from Movie_Recommendation_system.entity.config_entity import (DataIngestionConfig, DataValidationConfig,DataTransformationConfig,ModelTrainerConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -63,3 +63,19 @@ class ConfigurationManager:
         )
 
         return data_transformation_config
+    
+
+    
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+
+        create_directories([Path(config.root_dir)])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config.root_dir,
+            transformed_data_path=config.transformed_data_path,
+            vectorizer_path=config.vectorizer_path,
+            similarity_path=config.similarity_path,
+        )
+
+        return model_trainer_config

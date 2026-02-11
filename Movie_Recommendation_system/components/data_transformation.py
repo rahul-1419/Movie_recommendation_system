@@ -9,14 +9,14 @@ class DataTransformation:
     def __init__(self, config: DataTransformationConfig):
         self.config = config
 
-    # 🔹 helper: extract names from JSON-like string
+    # extract names from JSON-like string
     def _convert(self, obj):
         try:
             return [i["name"] for i in ast.literal_eval(obj)]
         except Exception:
             return []
 
-    # 🔹 helper: extract director name
+    # extract director name
     def _fetch_director(self, obj):
         try:
             for i in ast.literal_eval(obj):
@@ -27,7 +27,7 @@ class DataTransformation:
         return ""
 
     def transform_data(self):
-        # 1️⃣ load datasets
+        # load datasets
         movies = pd.read_csv(self.config.movies_data_path)
         credits = pd.read_csv(self.config.credits_data_path)
 
@@ -35,7 +35,7 @@ class DataTransformation:
 
         logger.info('Dataset Loaded.....')
 
-        # 2️⃣ merge (correct stage)
+        # merge
         movies = movies.merge(
             credits,
             left_on="id",
@@ -44,17 +44,17 @@ class DataTransformation:
 
         logger.info('Merge two files......')
 
-        # 3️⃣ select required columns
+        # select required columns
         movies = movies[
             ["id", "title", "overview", "genres", "keywords", "cast", "crew"]
         ]
 
         logger.info('selected columns....')
 
-        # 4️⃣ drop missing rows
+        # drop missing rows
         movies.dropna(inplace=True)
 
-        # 5️⃣ feature extraction
+        # feature extraction
         movies["genres"] = movies["genres"].apply(self._convert)
         movies["keywords"] = movies["keywords"].apply(self._convert)
         movies["cast"] = movies["cast"].apply(lambda x: self._convert(x)[:3])
@@ -62,7 +62,7 @@ class DataTransformation:
 
         logger.info('Feature Extraction Done....')
 
-        # 6️⃣ create tags column
+        # create tags column
         movies["tags"] = (
             movies["overview"]
             + " "
@@ -77,11 +77,11 @@ class DataTransformation:
 
         logger.info('Create tags Columns')
 
-        # 7️⃣ final clean
+        # final clean
         movies["tags"] = movies["tags"].str.lower()
         final_df = movies[["id", "title", "tags"]]
 
-        # 8️⃣ save transformed data
+        # save transformed data
         final_df.to_csv(
             self.config.transformed_data_path,
             index=False
