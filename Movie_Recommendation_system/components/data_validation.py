@@ -2,7 +2,7 @@ import os
 from Movie_Recommendation_system import logger
 import pandas as pd
 from Movie_Recommendation_system.entity.config_entity import DataValidationConfig
-
+from pathlib import Path
 
 class DataValidation:
     def __init__(self, config: DataValidationConfig):
@@ -15,7 +15,7 @@ class DataValidation:
             unzip_dir = self.config.unzip_data_dir
 
             for dataset_name, dataset_schema in schema.items():
-                file_path = unzip_dir / dataset_schema["file_name"]
+                file_path = file_path = Path(unzip_dir) / dataset_schema["file_name"]
 
                 print(f"\n🔍 Validating dataset: {dataset_name}")
                 print(f"📂 File path: {file_path}")

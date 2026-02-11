@@ -1,6 +1,7 @@
 from Movie_Recommendation_system import logger
 from Movie_Recommendation_system.pipeline.Stage_01_data_ingestion_pipeline import DataIngestionTrainingPipeline
 from Movie_Recommendation_system.pipeline.Stage_02_data_validation_pipeline import DataValidationTrainingPipeline
+from Movie_Recommendation_system.pipeline.Stage_03_data_transformation import DataTransformationTrainingPipeline
 
 
 STAGE_NAME = "Data Ingestion stage"
@@ -17,8 +18,19 @@ except Exception as e:
 STAGE_NAME = "Data Validation stage"
 try:
    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
-   data_ingestion = DataValidationTrainingPipeline()
-   data_ingestion.main()
+   data_validation = DataValidationTrainingPipeline()
+   data_validation.main()
+   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+
+STAGE_NAME = "Data Transformation stage"
+try:
+   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
+   data_transformation = DataTransformationTrainingPipeline()
+   data_transformation.main()
    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
         logger.exception(e)

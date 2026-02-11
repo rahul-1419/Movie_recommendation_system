@@ -1,6 +1,6 @@
 from Movie_Recommendation_system.constants import *
 from Movie_Recommendation_system.utils.common import read_yaml, create_directories
-from Movie_Recommendation_system.entity.config_entity import (DataIngestionConfig, DataValidationConfig)
+from Movie_Recommendation_system.entity.config_entity import (DataIngestionConfig, DataValidationConfig,DataTransformationConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -41,10 +41,25 @@ class ConfigurationManager:
         create_directories([Path(config.root_dir)])
 
         data_validation_config = DataValidationConfig(
-            root_dir=Path(config.root_dir),
-            unzip_data_dir=Path(config.unzip_dir),
+            root_dir=config.root_dir,
+            unzip_data_dir=config.unzip_dir,
             STATUS_FILE=config.STATUS_FILE,
             all_schema=schema
         )
 
         return data_validation_config
+    
+
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        config = self.config.data_transformation
+
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir=config.root_dir,
+            movies_data_path = config.movies_data_path,
+            credits_data_path = config.credits_data_path,
+            transformed_data_path = config.transformed_data_path
+        )
+
+        return data_transformation_config
