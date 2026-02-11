@@ -18,10 +18,3 @@ data_transformation:
   movies_data_path: artifacts/data_ingestion/UnZip/tmdb_5000_movies.csv
   credits_data_path: artifacts/data_ingestion/UnZip/tmdb_5000_credits.csv
   transformed_data_path: artifacts/data_transformation/merged_tmdb.csv 
-
-
-model_trainer:
-  root_dir: artifacts/model_building
-  transformed_data_path: artifacts/data_transformation/merged_tmdb.csv
-  vectorizer_path: artifacts/model_building/vectorizer.pkl
-  similarity_path: artifacts/model_building/similarity.pkl
