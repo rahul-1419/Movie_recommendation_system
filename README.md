@@ -40,7 +40,7 @@ The system processes raw movie data, validates it, transforms text features into
    - Calculates similarities between movie vectors (e.g., Cosine Similarity).
    - Generates and saves the final model artifacts (`.pkl` files) to be used for future recommendations.
 
-5. ** Stage 5: Model Evaluation**
+5. **Stage 5: Model Evaluation**
 
 ## 🛠️ Tech Stack & Practices
 - **Language:** Python
