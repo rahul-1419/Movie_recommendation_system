@@ -22,3 +22,8 @@ model_trainer:
   transformed_data_path: artifacts/data_transformation/merged_tmdb.csv
   vectorizer_path: artifacts/model_build/vectorizer.pkl
   similarity_path: artifacts/model_build/similarity.pkl
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  transformed_data_path: artifacts/data_transformation/merged_tmdb.csv
+  similarity_path: artifacts/model_build/similarity.pkl
