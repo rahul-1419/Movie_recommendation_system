@@ -29,3 +29,9 @@ class ModelTrainerConfig:
     transformed_data_path: Path
     vectorizer_path: Path
     similarity_path: Path
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir: Path
+    transformed_data_path: Path
+    similarity_path: Path
