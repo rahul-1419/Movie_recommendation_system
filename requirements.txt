@@ -1,7 +1,5 @@
 matplotlib
 seaborn
-mlflow
-dvc
 scikit-learn
 ipykernel
 python-box

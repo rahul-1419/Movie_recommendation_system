@@ -7,7 +7,6 @@ app = Flask(__name__)
 # Load data once at startup
 movies = pd.read_csv("artifacts/data_transformation/merged_tmdb.csv")
 
-# 🔥 ADD THIS LINE
 movies["title_lower"] = movies["title"].str.lower()
 
 with open("artifacts/model_build/similarity.pkl", "rb") as f:
@@ -47,4 +46,4 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
